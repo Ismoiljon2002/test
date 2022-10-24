@@ -76,6 +76,7 @@ h5 {font-size: 14px !important;}
     top: 0;
     margin: -4px;
 }
+.answerBTNs > button {margin: 90px 10px 0;}
 .game1 > button {
     padding: 0 !important;
     margin: 50px 10px 0;

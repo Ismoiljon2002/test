@@ -75,14 +75,21 @@ const Game2 = () => {
     const checkSingular = answer => {
         setTrials(prev => prev + 1);
         
-        if (answer ==  singularNum.current) {
-            setCorrectOnes(prev => prev + 1);
-            singularInput.current.value = answer;
-            singularInput.current.value = answer;
-            singularArea.current.classList.remove("error");
-            decimalInput.current.classList.remove("error") ;
-            singularInput.current.classList.remove("error") ;
-            setTimeout(() => getRandomNumber(), 500)
+        if (answer ==  singularNum.current ) {
+            if (decimalInput.current.value !== "") {
+                setCorrectOnes(prev => prev + 1);
+                singularInput.current.value = answer;
+                singularInput.current.value = answer;
+                singularArea.current.classList.remove("error");
+                decimalInput.current.classList.remove("error") ;
+                singularInput.current.classList.remove("error") ;
+                setTimeout(() => getRandomNumber(), 500)
+            } else {
+                setCorrectOnes(prev => prev + 1);
+                decimalInput.current.classList.add("error");
+                decimalArea.current.classList.add("error");
+                decimalInput.current.focus();
+            }
         } else {
             singularArea.current.classList.add("error");
             decimalInput.current.classList.add("error");
@@ -96,20 +103,37 @@ const Game2 = () => {
         getRandomNumber();
     }, [])
 
-    if (trials === 2) return (
+    const restartGame = () => {
+        setTrials(0); 
+        setCorrectOnes(0);
+    }
+
+    const result = [trials, correctOnes, Math.round(correctOnes * 100 / trials)];
+
+    if (trials === 20) return (
         <div className="game2 text-center">
-            <h1>Shunday davom eting!</h1>
-            <h2>Sizning natijalaringiz: </h2>
-            <table className="table text-center">
+            <h1>{result[2] === 100 ? "BARAKALLA!!!" : result[2] > 60 ? "Shunday davom eting!" : "Yanada ko'proq shug'ullaning!"}</h1>
+            <h3>Sizning natijalaringiz: </h3>
+            <table className="table table-light text-center my-4 p-2 ">
                 <thead>
-                    <tr><th colSpan={3}>Sizning natijalaringiz</th></tr>
                     <tr>
+                        <th>Urunishlar soni</th>
+                        <th>To'g'ri javoblar soni</th>
+                        <th>To'g'ri javoblarni foizi (%)</th>
                         <th></th>
                     </tr>
                 </thead>
+                <tbody>
+                    <tr>
+                    {result.map((res, index) => (
+                        <td key={index}> {res} </td>
+                    ))}
+                    <td><button className="btn btn-primary" onClick={restartGame}>Davom etish </button></td>
+                    </tr>
+                </tbody>
             </table>
         </div>
-    )
+    );
 
     return ( 
         <div className="game2 text-center">
@@ -153,7 +177,7 @@ const Game2 = () => {
                 <button style={{fontSize: 22, fontWeight: 700}} 
                     className='btn btn-success m-2 px-3'
                     onClick={() => {getRandomNumber(); setTrials(prev => prev + 1) }}
-                >Next ></button>
+                >Keyingi</button>
             </div>
         </div>
      );
