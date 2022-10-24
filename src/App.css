@@ -1,38 +1,145 @@
+
+:root {
+    --yellow: #F7E64D;
+    --grey: #CFCECE;
+    --green: #98bb88;
+    --red: #ED696A;
+    --blue: #59C2E2;
+}
+
+.col-sm-6 {float: left;}
+
 .App {
-  text-align: center;
+    background-image: linear-gradient(to bottom, rgb(255, 252, 240), rgb(255, 245, 135));
+    min-width: 964px;
+    max-width: 964px;
+    min-height: 600px;
+    max-height: 600px;
+    border: 2px solid #333;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar {
+    height: 36px;
+    background-color: purple !important;
+    color: #fff !important;
+}
+.nav-link.active {font-weight: 700;}
+
+
+h2 {
+    font-size: 28px; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    font-weight: 600 !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h2, h4 {
+    transition: 0.3s ease;
+    animation: animate-up 1s ease;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h5 {font-size: 14px !important;}
+
+@keyframes animate-up {
+    from {transform: scale(0) translateY(100px);}
+    to {transform: scale(1) translateY(0);}
 }
 
-.App-link {
-  color: #61dafb;
+/* Game 1 */
+.game1, .game2 {
+    position: relative;
+    height: 560px;
+    padding: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.imgArea {
+    width: 180px;
+    height: 180px;
+    border: 4px solid var(--green);
+    background-color: rgba(152, 187, 136, .2);
+    border-radius: 25px;
+    margin: 20px 10px 0;
+}
+.imgArea > img {
+    width: 86px;
+    margin: 20px 0 0;
+}
+.answer {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    border: 4px solid var(--blue) !important;
+    margin: 90px 0px 0;
+}
+.answer.appended {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: -4px;
+}
+.game1 > button {
+    padding: 0 !important;
+    margin: 50px 10px 0;
+    font-size: 25px;
+    font-weight: 1000 !important;
+    cursor: grab !important;
+}
+
+/* Game 2 */
+.col-sm-5 {
+    border-radius: 50%;
+}
+.col-sm-5.error {border: 2px solid var(--red);}
+
+.options {
+    position: absolute;
+    bottom: 50px;
+    left: 12%;
+    /* transform: translateX(-30%); */
+}
+.options > .btn-primary {
+    background-color: var(--blue) !important;
+} 
+
+.circle {
+    width: 50px ;
+    height: 50px;
+    border-radius: 50%;
+}
+.purple {background-image: linear-gradient(to right, rgb(179, 29, 179), rgb(98, 0, 98))}
+.gold {background-image: linear-gradient(to right, var(--yellow), orange );}
+.green {color: green}
+
+.inputs {
+    position: absolute;
+    bottom: 150px;
+    left: 46%;
+}
+
+.inputs > input::-webkit-inner-spin-button,
+.inputs > input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.inputs > input {
+    width: 50px;
+    padding: 0 10px;
+    margin-left: -4px;
+    font-size: 30px;
+    font-weight: 700;
+    border: 4px solid #777;
+    border-radius: 20px;
+    outline: none;
+    -moz-appearance: textfield;
+}
+.inputs > input.error {
+    border: 4px solid var(--red);
+}
+.decimalInp {
+    border-right: 4px solid transparent !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+.singularInp {
+    border-left: 4px solid transparent !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
 }
